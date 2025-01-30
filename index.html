@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buzz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <!-- Écran de sélection de la langue -->
+  <div id="languageScreen">
+    <h1>Choisissez votre langue</h1>
+    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+    <button onclick="setLanguage('en')">🇬🇧 English</button>
+</div>
+<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    </div>
+
+<!-- MENU PRINCIPAL -->
+<div id="menuScreen" style="display: none;">
+    <h1 id="menuTitle">🎮 Quiz Buzz</h1>
+    
+    <!-- Jouer (Solo) -->
+    <button onclick="startGame()" id="playButton">▶️ Jouer</button>
+    
+    <!-- Mode Multijoueur -->
+    <button onclick="showMultiplayerMenu()" id="multiplayerButton">🌍 Multijoueur</button>
+    
+    <!-- Règles du jeu -->
+    <button onclick="showRules()" id="rulesButton">📜 Règles</button>
+    
+    <!-- Quitter la partie -->
+    <button onclick="quitGame()" id="quitButton">🚪 Quitter</button>
+</div>
+
+<!-- MENU MULTIJOUEUR (caché au début) -->
+<div id="multiplayerMenu" style="display: none;">
+    <h1>🌍 Mode Multijoueur</h1>
+    
+    <!-- Création d'une partie -->
+    <button onclick="createRoom()">➕ Créer une Partie</button>
+    
+    <!-- Rejoindre une partie existante -->
+    <input type="text" id="roomCodeInput" placeholder="Entrez le code de la salle">
+    <button onclick="joinRoom()">🔑 Rejoindre</button>
+    
+    <p id="roomInfo"></p>
+    
+<h2>Joueurs dans la salle :</h2>
+<ul id="playerList"></ul>
+
+    <!-- Bouton Retour -->
+    <button onclick="returnToMenu()" id="backButton">🔙 Retour</button>
+</div>
+<!-- Écran de saisie du prénom -->
+<div id="nameScreen" style="display: none;">
+    <h1>Entrez votre prénom</h1>
+    <input type="text" id="playerNameInput" placeholder="Votre prénom">
+    <button onclick="savePlayerName()">✅ Valider</button>
+</div>
+
+<!-- Nouvelle salle multijoueur (affichée après création/rejoindre une salle) -->
+<div id="roomScreen" style="display: none;">
+    <h1>Salle de jeu</h1>
+    <p>Code de la salle : <span id="roomCodeDisplay"></span></p>
+    <h2>Joueurs connectés :</h2>
+    <ul id="playerList"></ul>
+    <p id="countdownText"></p>
+</div>
+
+<!-- Sélection du thème (caché au départ) -->
+<div id="themeScreen" style="display: none;">
+    <h1>Choisissez un thème</h1>
+<button onclick="selectTheme('history')">📜 Histoire</button>
+<button onclick="selectTheme('sports')">⚽ Sport</button>
+<button onclick="selectTheme('math')">➗ Mathématiques</button>
+
+</div>
+
+<div class="container" style="display: none;">
+    <h1>Quiz Buzz</h1>
+    <p id="timer">Temps restant : <span id="time">20</span> sec</p>
+    <h2 id="question">Chargement de la question...</h2>
+    <div id="choices"></div>
+    <p id="score">Score : <span id="scoreValue">0</span></p>
+    <button id="nextBtn" onclick="nextQuestion()" disabled>Question suivante</button>
+    <button id="menuBtn" style="display: none;" onclick="returnToMenu()">Retour au menu</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
+
+
